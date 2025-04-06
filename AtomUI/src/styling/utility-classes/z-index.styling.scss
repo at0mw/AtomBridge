@@ -1,0 +1,54 @@
+/*
+  Styling for consistent z-index heights
+ */
+.z-pinnacle {
+  z-index: var(--proav-elevation-pinnacle);
+}
+
+.z-developer-master-1 {
+  z-index: var(--proav-elevation-developer-master-1);
+}
+
+.z-developer-master {
+  z-index: var(--proav-elevation-developer-master);
+}
+
+.z-offline-cover {
+  z-index: var(--proav-elevation-disconnect);
+}
+
+.z-ui-cover-content {
+  z-index: var(--proav-elevation-over-cover);
+}
+
+//.z-ui-cover-content-overlay {
+//  z-index: var(--proav-elevation-over-cover) + 1;
+//}
+
+.z-ui-cover {
+  z-index: var(--proav-elevation-cover);
+}
+
+.z-5 {
+  z-index: var(--proav-elevation-five);
+}
+
+.z-4 {
+  z-index: var(--proav-elevation-four);
+}
+
+.z-3 {
+  z-index: var(--proav-elevation-three);
+}
+
+.z-2 {
+  z-index: var(--proav-elevation-two);
+}
+
+.z-1 {
+  z-index: var(--proav-elevation-one);
+}
+
+.z-0 {
+  z-index: var(--proav-elevation-zero);
+}

@@ -1,0 +1,34 @@
+@mixin divider($border: true, $direction: bottom, $margin: var(--proav-dimension-medium), $borderColor: var(--proav-sys-color-outline-variant), $borderWidth: 1px) {
+  margin: $margin 0;
+  //height: 1px;
+
+  // Apply border only if $border is true
+  @if $border {
+    @if $direction == bottom {
+      border-bottom: solid $borderWidth $borderColor;
+    } @else if $direction == top {
+      border-top: solid $borderWidth $borderColor;
+    } @else if $direction == left {
+      border-left: solid $borderWidth $borderColor;
+    } @else if $direction == right {
+      border-right: solid $borderWidth $borderColor;
+    }
+  }
+}
+
+.divider--border-bottom {
+  @include divider(true, bottom);
+}
+
+.divider--no-border {
+  @include divider(false);
+}
+
+
+.divider--border-top-large {
+  @include divider(true, top, var(--proav-dimension-large), var(--proav-sys-color-outline-variant), 2px);
+}
+
+.divider--border-left {
+  @include divider(true, left);
+}

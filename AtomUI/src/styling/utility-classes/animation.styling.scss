@@ -1,0 +1,124 @@
+.pulse-button {
+  &.held-button {
+    animation: pulse 0.5s infinite ease-out;
+  }
+
+  &:active {
+    animation: pulse 0.5s infinite ease-out;
+  }
+}
+
+.hold-button:active {
+  animation: pulse 2s 1 ease-out;
+}
+
+@keyframes pulse {
+  from {
+    box-shadow: 0 0 0 0 var(--proav-sys-color-primary);
+  }
+  to {
+    box-shadow: 0 0 0 10px transparent;
+  }
+}
+
+.holding {
+  transform: rotate(-2deg);
+  transition: transform 300ms ease, rotate 300ms ease, box-shadow 300ms ease, background-color 300ms ease;
+  transition-delay: 300ms;
+}
+
+.wave-ripple-fast {
+  position: absolute;
+  background: var(--proav-sys-color-on-primary);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  border-radius: 50%;
+  animation: waveRipple 0.5s linear forwards;
+}
+
+.wave-ripple {
+  position: absolute;
+  background: var(--proav-sys-color-on-primary);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  border-radius: 50%;
+  animation: waveRipple 1s linear forwards;
+}
+
+.wave-ripple-slow {
+  position: absolute;
+  background: var(--proav-sys-color-on-primary);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  border-radius: 50%;
+  animation: waveRipple 2s linear forwards;
+}
+
+
+.wave-ripple-hold {
+  position: absolute;
+  background: var(--proav-sys-color-on-primary);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  border-radius: 50%;
+  animation: waveRipple 1.5s linear infinite;
+}
+
+@keyframes waveRipple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.5;
+  }
+
+  100% {
+    width: 500px;
+    height: 500px;
+    opacity: 0;
+  }
+}
+
+.is-spinning {
+  animation: rotateSpin 0.4s linear infinite;
+}
+
+.is-spinning-smooth {
+  animation: rotateSpinStop 2s ease-out;
+}
+
+@keyframes rotateSpinStop {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  85% {
+    transform: rotate(1080deg);
+  }
+
+  90% {
+    transform: rotate(1090deg);
+  }
+
+  100% {
+    transform: rotate(1080deg);
+  }
+}
+
+@keyframes rotateSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes alertSlider {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}

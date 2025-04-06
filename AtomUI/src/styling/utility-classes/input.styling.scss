@@ -1,0 +1,45 @@
+:root {
+  --proav-primary-shadow-color: color-mix(in srgb, transparent, var(--proav-sys-color-primary) 47%);
+  //--proav-input-colour: #ffffff;
+  --proav-input-shadow: 0 0 0 3px var(--proav-primary-shadow-color);
+}
+
+//[data-theme-mode='dark'] {
+//  --proav-input-colour: #000;
+//}
+
+input {
+  border-radius: var(--proav-dimension-extra-small);
+  box-sizing: border-box;
+  transition: box-shadow 1s;
+  padding: 8px 16px;
+  //line-height: 1.75;
+  width: 100%;
+  background-color: var(--proav-sys-color-surface-container);
+  color: var(--proav-sys-color-on-surface);
+  box-shadow: 0 0 0 2px transparent;
+  border: 1px solid var(--proav-sys-color-outline-variant);
+}
+
+input:focus {
+  //border: 1px solid var(--proav-sys-color-outline);
+  //box-shadow: var(--proav-input-shadow);
+  outline: none;
+}
+
+input {
+  &.no-styling {
+    border: none;
+
+    &:focus {
+      box-shadow: none;
+    }
+
+  }
+}
+
+//
+//--ag-active-color: #2196f3;
+//--ag-input-focus-border-color: var(--ag-active-color);
+//--ag-input-focus-box-shadow: 0 0 0 3px ;
+//color-mix(in srgb, transparent, var(--proav-sys-color-primary) 47%)

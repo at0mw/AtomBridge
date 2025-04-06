@@ -1,0 +1,63 @@
+/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
+/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "outDir": "./dist/out-tsc",
+    "baseUrl": "./",
+    "paths": {
+      "@angular-animations/*": [
+        "src/app/angular-animations/*"
+      ],
+      "@environments/*": [
+        "src/environments/*"
+      ],
+      "@components/*": [
+        "src/app/components/*"
+      ],
+      "@config/*": [
+        "src/config/*"
+      ],
+      "@enums/*": [
+        "src/app/enums/*"
+      ],
+      "@interfaces/*": [
+        "src/app/interfaces/*"
+      ],
+      "@routes/*": [
+        "src/app/routes/*"
+      ],
+      "@services/*": [
+        "src/app/services/*"
+      ],
+      "@styling/*": [
+        "src/styling/*"
+      ],
+      "@test-data/*": [
+        "src/test/*"
+      ],
+      "@types-custom/*": [
+        "src/app/types/*"
+      ]
+    },
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "bundler",
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "ES2022"
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
+}

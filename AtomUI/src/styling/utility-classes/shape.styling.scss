@@ -1,0 +1,43 @@
+.fully-rounded {
+  border-radius: var(--proav-shape-corner-full);
+}
+
+.extra-large-top-rounding {
+  border-radius: var(--proav-shape-corner-extra-large) var(--proav-shape-corner-extra-large) 0 0;
+}
+
+.extra-large-rounding {
+  border-radius: var(--proav-shape-corner-extra-large);
+}
+
+.large-top-rounding {
+  border-radius: var(--proav-shape-corner-large) var(--proav-shape-corner-large) 0 0;
+}
+
+.large-end-rounding {
+  border-radius: 0 var(--proav-shape-corner-large) var(--proav-shape-corner-large) 0;
+}
+
+.large-start-rounding {
+  border-radius: var(--proav-shape-corner-large) 0 0 var(--proav-shape-corner-large);
+}
+
+.large-rounding {
+  border-radius: var(--proav-shape-corner-large);
+}
+
+.medium-rounding {
+  border-radius: var(--proav-shape-corner-medium);
+}
+
+.small-rounding {
+  border-radius: var(--proav-shape-corner-small);
+}
+
+.extra-small-top-rounding {
+  border-radius: var(--proav-shape-corner-extra-small) var(--proav-shape-corner-extra-small) 0 0;
+}
+
+.extra-small-rounding {
+  border-radius: var(--proav-shape-corner-extra-small);
+}

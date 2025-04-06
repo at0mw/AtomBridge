@@ -1,0 +1,39 @@
+.border-outline {
+  border: 1px solid var(--proav-sys-color-outline);
+}
+
+.border-outline-top {
+  border-top: 1px solid var(--proav-sys-color-outline);
+}
+
+.border-outline-right {
+  border-right: 1px solid var(--proav-sys-color-outline);
+}
+
+.border-outline-left {
+  border-left: 1px solid var(--proav-sys-color-outline);
+}
+
+.border-outline-bottom {
+  border-bottom: 1px solid var(--proav-sys-color-outline);
+}
+
+.border-main {
+  border: 1px solid var(--proav-sys-color-outline);
+}
+
+.border-main-top {
+  border-top: 1px solid var(--proav-border-color-main);
+}
+
+.border-main-right {
+  border-right: 1px solid var(--proav-border-color-main);
+}
+
+.border-main-left {
+  border-left: 1px solid var(--proav-border-color-main);
+}
+
+.border-main-bottom {
+  border-bottom: 1px solid var(--proav-border-color-main);
+}

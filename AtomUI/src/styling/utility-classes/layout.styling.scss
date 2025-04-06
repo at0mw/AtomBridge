@@ -1,0 +1,90 @@
+// Mixin for creating a flex container
+@mixin flex-container($direction: row, $justify: flex-start, $align: stretch, $gap: null, $wrap: nowrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+  @if $gap != null {
+    gap: $gap;
+  }
+}
+
+// Flex container utilities
+.flex-row {
+  @include flex-container(row);
+}
+
+.flex-column {
+  @include flex-container(column);
+}
+
+// Justify-content utilities
+@each $justify-value in (start, center, end, space-between, space-around, space-evenly) {
+  .justify-#{$justify-value} {
+    justify-content: $justify-value;
+  }
+}
+
+// Align-items utilities
+@each $align-value in (start, center, end, stretch, baseline) {
+  .align-#{$align-value} {
+    align-items: $align-value;
+  }
+}
+
+// Gap utilities with CSS variables for better control
+$gaps: (
+  "0": 0,
+  "sm": var(--proav-dimension-small),
+  "md": var(--proav-dimension-medium),
+  "lg": var(--proav-dimension-large),
+  "standard": 1rem
+);
+
+@each $size, $value in $gaps {
+  .gap-#{$size} {
+    gap: $value;
+  }
+}
+
+// Flex-wrap utilities
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.no-wrap {
+  flex-wrap: nowrap;
+}
+
+// Full-page flex layout
+.full-page-flex {
+  @include flex-container(column);
+  height: 100%;
+}
+
+// Centering utilities
+.flex-center {
+  @include flex-container(row, center, center);
+}
+
+.flex-end {
+  @include flex-container(row, flex-end, center);
+}
+
+.flex-column-center {
+  @include flex-container(column, center, center);
+}
+
+.flex-right {
+  @include flex-container(row, flex-end, center);
+}
+
+// Utility classes
+.flex-1 {
+  flex: 1;
+}
+
+.overflow-scroll {
+  overflow: auto;
+}

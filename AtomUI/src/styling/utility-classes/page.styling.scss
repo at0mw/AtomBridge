@@ -1,0 +1,15 @@
+.standard-page-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  .button-area {
+    display: flex;
+    gap: 1rem;
+  }
+}
+
+.standard-page {
+  padding: 2rem 2rem 1rem;
+}

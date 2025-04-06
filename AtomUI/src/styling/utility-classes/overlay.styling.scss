@@ -1,0 +1,72 @@
+/*
+  Styling for consistent overlays
+ */
+.overlay-container {
+  pointer-events: none;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: var(--proav-elevation-three);
+}
+
+.overlay {
+  width: 350px;
+  min-height: 200px;
+  box-shadow: var(--proav-header-container-shadow);
+  border: 1px solid var(--proav-header-container-border);
+  background-color: var(--proav-sys-color-surface);
+  //background-color: red;
+  pointer-events: all;
+  padding: var(--proav-dimension-large);
+  border-radius: var(--proav-dimension-extra-small);
+  box-sizing: border-box;
+  //overflow: hidden;
+}
+
+.side-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  animation: enterRight 0.5s forwards;
+  height: 100%;
+  width: 50%;
+  //min-height: 200px;
+  //box-shadow: var(--proav-header-container-shadow);
+  border: 1px solid var(--proav-header-container-border);
+  background-color: var(--proav-sys-color-surface);
+  //background-color: red;
+  pointer-events: all;
+  padding: var(--proav-dimension-xxl) var(--proav-dimension-xxl) var(--proav-dimension-large);
+  //border-bottom-left-radius: var(--proav-dimension-extra-small);
+  //border-top-left-radius: var(--proav-dimension-extra-small);
+  box-sizing: border-box;
+  z-index: var(--proav-elevation-over-cover);
+  //overflow: hidden;
+}
+
+.screen-darken {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #322F37;
+  opacity: 0.4;
+  z-index: var(--proav-elevation-two);
+}
+
+@keyframes enterRight {
+  from {
+    opacity: 0.4;
+    right: -100%;
+  }
+  to {
+    opacity: 1;
+    right: 0;
+  }
+}
