@@ -1,7 +1,15 @@
-<div class="flex-row gap-md">
+<div class="flex-row gap-md standard-margin-bottom">
   <p-button (onClick)="onNavigateToHome()" [label]="'Navigate Home'"></p-button>
   <p-button (onClick)="onNavigateToWeather()" [label]="'Navigate To Weather'"></p-button>
   <p-button (onClick)="onNavigateToWeatherNonSignal()" [label]="'Navigate To Weather Non Signal'"></p-button>
+
+</div>
+<div class="body-large standard-margin-bottom">
+  Websocket Connection Status: {{websocketConnectionStatus | async}}
+</div>
+<div class="flex-row gap-md standard-margin-bottom">
+  <p-button (onClick)="onWebsocketChangeState(true)" [label]="'Connect Ws'"></p-button>
+  <p-button (onClick)="onWebsocketChangeState(false)" [label]="'Disconnect Ws'"></p-button>
 </div>
 
 <router-outlet/>

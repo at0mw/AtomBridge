@@ -7,7 +7,7 @@ export const environment: Environment = {
       url: 'http://192.168.1.113:8080'
     },
     websocket: {
-      url: "test"
+      url: "ws://192.168.1.113:8080/ws"
     },
     logging: {
       enabled: true,
