@@ -1,4 +1,4 @@
-@AtomBridge_HostAddress = http://localhost:5299
+@AtomBridge_HostAddress = http://localhost:8080
 
 GET {{AtomBridge_HostAddress}}/weatherforecast/
 Accept: application/json

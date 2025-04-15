@@ -4,7 +4,7 @@ export const environment: Environment = {
   production: false,
   buildVersion: "test-build",
   restApi: {
-    url: 'http://localhost:5299'
+    url: 'http://192.168.1.113:8080'
   },
   websocket: {
     url: "test"

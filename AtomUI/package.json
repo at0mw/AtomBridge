@@ -6,7 +6,15 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "COMPLETEBUILD:onestepweb": "npm run build && npm run build:archive && npm run build:deployweb",
+    "COMPLETEBUILD:onestepmobile": "npm run build && npm run build:archive && npm run build:deploymobile",
+    "COMPLETEBUILD:onesteptouchpanel": "npm run build && npm run build:archive && npm run build:deploytouchpanel",
+    "build:deployweb": "ch5-cli deploy -H 10.100.203.139 -p -t web dist/atom-ui.ch5z",
+    "build:deploymobile": "ch5-cli deploy -H 10.100.203.139 -p -t mobile dist/atom-ui.ch5z",
+    "build:deploytouchpanel": "ch5-cli deploy -H 192.168.1.122 -p -t touchscreen dist/atom-ui.ch5z",
+    "build:archive": "npm run edit:index && ch5-cli archive -p atom-ui -d dist/atom-ui -o dist",
+    "edit:index": "node scripts/edit-index-post-build.js"
   },
   "private": true,
   "dependencies": {
