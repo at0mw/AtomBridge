@@ -10,7 +10,7 @@ export class UiThemeService {
   //#region Variables
   private readonly logger = inject(LoggingService);
 
-  themeMode = signal<ThemeMode>('light');
+  themeMode = signal<ThemeMode>(THEME_MODE_TYPE.LIGHT);
   //#endregion
 
   constructor() {
@@ -22,8 +22,6 @@ export class UiThemeService {
     if (isThemeMode(themeMode)) {
       this.themeMode.set(themeMode);
       document.documentElement.setAttribute('data-theme-mode', themeMode);
-    } else {
-      this.setThemeMode(THEME_MODE_TYPE.LIGHT);
     }
   }
 
