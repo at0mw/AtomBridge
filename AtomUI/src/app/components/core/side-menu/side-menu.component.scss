@@ -5,12 +5,10 @@
   transition: width 0.5s ease-in-out;
   display: flex;
   flex-direction: column;
-  background: var(--standard-nav-bar-colour);
+  background: var(--nav-bar-colour);
 
   .top-button {
     height: 64px;
-    border-right: solid 1px var(--proav-sys-color-outline-variant);
-    border-bottom: solid 1px var(--proav-on-nav-bar-border-colour);
     display: flex;
     justify-content: center;
     align-items: center;

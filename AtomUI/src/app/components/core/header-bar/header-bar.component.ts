@@ -3,6 +3,7 @@ import {
   NavHamburgerButtonComponent
 } from '@components/single-components/nav-hamburger-button/nav-hamburger-button.component';
 import {UiBaseService} from '@services/core/ui-base.service';
+import {UiThemeService} from '@services/core/ui-theme.service';
 
 @Component({
   selector: 'atom-header-bar',
@@ -14,13 +15,24 @@ import {UiBaseService} from '@services/core/ui-base.service';
 })
 export class HeaderBarComponent {
   private readonly uiBaseService = inject(UiBaseService);
+  private readonly uiThemeService = inject(UiThemeService);
+
   showMenu = this.uiBaseService.sideMenuExpanded;
+  themeMode = this.uiThemeService.themeMode;
+
+  themeModeToggled: boolean = false;
+  themeTogglePressedTimeout: any;
 
   onHamburgerAction() {
     this.uiBaseService.toggleSideMenuState();
   }
 
-  onLightDarkModeToggle(state: boolean) {
-
+  onLightDarkModeToggle() {
+    this.themeModeToggled = true;
+    clearTimeout(this.themeTogglePressedTimeout);
+    this.themeTogglePressedTimeout = setTimeout(() => {
+      this.themeModeToggled = false;
+    }, 1000);
+    this.uiThemeService.themeModeToggle();
   }
 }

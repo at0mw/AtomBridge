@@ -1,5 +1,11 @@
 :root {
-  --standard-nav-bar-colour: var(--proav-sys-color-primary);
+  --nav-bar-colour: var(--proav-sys-color-primary);
+  --proav-on-nav-bar-colour: #FAFFFAFA;
+  --on-nav-bar-colour: var(--proav-on-nav-bar-colour);
+}
+
+.on-nav-bar-colour {
+  color: var(--proav-on-nav-bar-colour);
 }
 
 a {

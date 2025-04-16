@@ -4,4 +4,12 @@
       [showMenu]="showMenu()"
       (action)="onHamburgerAction()"></atom-nav-hamburger-button>
   </div>
+
+  <div class="right-controls">
+    <div class="header-button light-dark-mode-button" (click)="onLightDarkModeToggle()"
+         [class.dark-mode]="themeMode() === 'dark'" [class.toggled]="themeModeToggled">
+      <i class="relative-container fa-light small-icon"
+         [class.fa-sun-bright]="themeMode() !== 'dark'" [class.fa-moon]="themeMode() === 'dark'"></i>
+    </div>
+  </div>
 </div>
