@@ -1,0 +1,39 @@
+.filter-container {
+  max-width: 300px;
+  max-height: 400px;
+  display: flex;
+  flex-direction: column;
+  padding: var(--ag-widget-container-vertical-padding) var(--ag-widget-container-horizontal-padding);
+  padding-bottom: calc(var(--ag-widget-container-vertical-padding) - var(--ag-widget-vertical-spacing));
+  overflow-y: auto;
+  min-height: calc(var(--ag-list-item-height) + var(--ag-widget-container-vertical-padding) + var(--ag-widget-vertical-spacing));
+}
+
+.category-list {
+  margin-bottom: 0;
+}
+
+.category-list > * {
+  margin-bottom: var(--ag-widget-vertical-spacing);
+  flex: 1;
+}
+
+::ng-deep {
+  .p-button {
+    &.filter-button {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .p-inputtext {
+    &.filter-input {
+      height: 40px;
+    }
+  }
+}
+
+.custom-filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+}

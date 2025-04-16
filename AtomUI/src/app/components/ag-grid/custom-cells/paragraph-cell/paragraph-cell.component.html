@@ -1,0 +1,13 @@
+<div class="paragraph-cell relative-container" [class.expand-cell]="shouldExpandCell()" (click)="toggleExpand()">
+  <div #paragraphCell class="paragraph-cell-text body-medium flex-1">
+    {{ text }}
+  </div>
+
+  @if(signalExpandable() && !shouldExpandCell()) {
+    <div class="expand-button">
+      <div class="expand-icon">
+        <i class="fa-solid fa-angle-down"></i>
+      </div>
+    </div>
+  }
+</div>

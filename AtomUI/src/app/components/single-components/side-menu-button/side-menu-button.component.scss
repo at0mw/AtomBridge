@@ -57,7 +57,7 @@
 
   &.active {
     .side-menu-button {
-      background: var(--proav-sys-color-surface-container);
+      background: var(--proav-sys-color-background);
     }
 
     .menu-icon {
@@ -75,7 +75,7 @@
       position: absolute;
       width: 20px;
       height: 30px;
-      background: var(--proav-sys-color-surface-container);
+      background: var(--proav-sys-color-background);
       right: 0;
       overflow: hidden;
 

@@ -1,0 +1,15 @@
+//:host {
+//  flex: 1;
+//  height: 100%;
+//  opacity: 0.4;
+//}
+.custom-loading-overlay {
+  height: 100%;
+  width: 100%;
+  //background: var(--proav-sys-color-surface);
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}

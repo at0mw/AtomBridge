@@ -1,0 +1,52 @@
+<div class="grid-column-menu">
+  <div [class.active]="menuActive !== SideMenuType.None" class="column-menu-container">
+    @switch (menuActive) {
+      @case (SideMenuType.Columns) {
+        <div class="column-menu-list">
+          <h4 class="standard-margin-bottom">Column Visibility</h4>
+          @for (column of columnStates; track column.id) {
+            <div class="xs-margin-bottom">
+<!--              <proActiV-checkbox-toggle-->
+<!--                [height]="'auto'"-->
+<!--                [padding]="''"-->
+<!--                [toggleState]="column.visible"-->
+<!--                [disable]="maxActiveColumns && !column.visible"-->
+<!--                [label]="column.name"-->
+<!--                (action)="onColumnVisibilityChange(column)">-->
+<!--              </proActiV-checkbox-toggle>-->
+            </div>
+          }
+        </div>
+      }
+      @case (SideMenuType.Filters) {
+        <div class="column-menu-list">
+          <h4 class="standard-margin-bottom">Filters</h4>
+          <button class="reset-filters-button" (click)="clearFilters()">
+            <i class="fa-regular fa-filter-slash"></i>
+            Reset
+          </button>
+        </div>
+      }
+    }
+
+
+  </div>
+  <div [class.active]="menuActive !== SideMenuType.None" class="column-menu-controls">
+    @if (enableColumnMenu) {
+      <button class="column-menu-button" (click)="openColumnMenu()"
+              [class.active]="menuActive === SideMenuType.Columns">
+        <i class="fa-regular fa-table-layout fa-rotate-90"></i>
+        <div class="column-menu-text body-medium">Columns</div>
+      </button>
+    }
+
+    @if (enableFiltersMenu) {
+      <button class="column-menu-button" (click)="openFiltersMenu()"
+              [class.active]="menuActive === SideMenuType.Filters">
+        <i class="fa-regular fa-filter fa-rotate-90"></i>
+        <div class="column-menu-text body-medium">Filters</div>
+      </button>
+    }
+
+  </div>
+</div>

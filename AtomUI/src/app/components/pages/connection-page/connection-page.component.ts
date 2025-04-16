@@ -1,8 +1,6 @@
-import {Component, inject, Signal} from '@angular/core';
-import {Observable} from 'rxjs';
+import {Component, computed, inject, Signal} from '@angular/core';
 import {WebSocketState} from '@interfaces/communication/websocket-service.interface';
 import {WebsocketService} from '@services/communication/websocket.service';
-import {AsyncPipe} from '@angular/common';
 import {Button} from 'primeng/button';
 
 @Component({
@@ -16,6 +14,9 @@ import {Button} from 'primeng/button';
 export class ConnectionPageComponent {
   private readonly _websocket = inject(WebsocketService);
   websocketConnectionStatus: Signal<WebSocketState> = this._websocket.connectionStatus();
+  websocketConnectButtonLabel = computed(() => {
+    return this.websocketConnectionStatus() === "OPEN" ? "Disconnect" : "Connect";
+  })
 
 
   onWebsocketChangeState(state: boolean) {

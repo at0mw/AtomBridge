@@ -1,0 +1,62 @@
+.grid-column-menu {
+  height: 100%;
+  background: var(--proav-sys-color-surface);
+  display: flex;
+  border-left: 1px solid var(--proav-ag-grid-border);
+
+  .column-menu-controls {
+
+    &.active {
+      border-left: solid 1px var(--proav-ag-grid-border);
+    }
+
+    height: 100%;
+
+    .column-menu-button {
+      background: transparent;
+      color: var(--proav-sys-color-on-surface);
+      display: flex;
+      flex-direction: column;
+      gap: var(--proav-dimension-extra-small);
+      justify-content: center;
+      align-items: center;
+      min-width: 30px;
+      //width: 30px;
+      padding: 1.75rem 0.5rem;
+      border-radius: 0;
+
+      &.active {
+        background: var(--proav-sys-color-surface-container-highest);
+        border-bottom: solid 1px var(--proav-ag-grid-border);
+      }
+
+      .column-menu-text {
+        writing-mode: vertical-rl;
+        //text-orientation: upright;
+      }
+    }
+  }
+
+  .column-menu-container {
+    height: 100%;
+    width: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    .column-menu-list {
+      min-width: 250px;
+      box-sizing: border-box;
+      padding: var(--proav-dimension-medium);
+    }
+
+    &.active {
+      transition: width 0.2s ease-in-out;
+      width: 250px;
+      padding: 0;
+    }
+  }
+}
+
+.reset-filters-button {
+  width: 100%;
+}

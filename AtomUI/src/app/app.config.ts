@@ -6,7 +6,9 @@ import {providePrimeNG} from 'primeng/config';
 import {primeNgToTokens} from '@styling/prime-ng/prime-ng-to-tokens';
 import {APP_BASE_HREF} from '@angular/common';
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
+import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 
+ModuleRegistry.registerModules([AllCommunityModule]);
 export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimationsAsync(),

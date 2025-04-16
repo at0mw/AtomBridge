@@ -1,35 +1,35 @@
-import {Component, ElementRef, inject, ViewChild} from '@angular/core';
+import {Component, inject, ViewChild, ViewContainerRef} from '@angular/core';
+import {LoggingService} from "@services/logging/logging.service";
 import {environment} from "@environments/environment";
-import {
-  LoggingFilterDevToolComponent
-} from "@components/dev-hub/dev-tools/logging-filter-dev-tool/logging-filter-dev-tool.component";
-import {InputOtp} from "primeng/inputotp";
-import {FormsModule} from "@angular/forms";
+import {Button} from "primeng/button";
+import {fadeInAndOut} from "@angular-animations/fade-in-out.animation";
+import {DevToolsService} from "@services/developer/dev-tools.service";
+import {DevToolsPage} from "@types-custom/dev-tools-page.type";
 import {LogCategory} from "@enums/logging/log-category.enum";
-import {fadeInAndOut} from '@angular-animations/fade-in-out.animation';
-import {LoggingService} from '@services/logging/logging.service';
-import {DevHubService} from '@services/developer/dev-hub.service';
+import {IconsService} from "@services/core/icons.service";
 
 @Component({
   selector: 'atom-dev-hub',
   templateUrl: './dev-hub.component.html',
   imports: [
-    LoggingFilterDevToolComponent,
-    InputOtp,
-    FormsModule
+    Button
   ],
   styleUrl: './dev-hub.component.scss',
   animations: [fadeInAndOut]
 })
 export class DevHubComponent {
   private readonly logger = inject(LoggingService);
-  private readonly devHubService = inject(DevHubService);
-  @ViewChild('otpInput') otpInput!: InputOtp;
+  private readonly devToolsService = inject(DevToolsService);
+  protected readonly iconsService = inject(IconsService);
 
-  showDevTools = this.devHubService.showDevTools;
+  @ViewChild('devToolsPage', {read: ViewContainerRef, static: true}) dynamicContent!: ViewContainerRef;
+
   isDrawerOpen = false;
   buildVersion: string = "";
-  unlockPin: string = "";
+  devToolsPages = ["settings", "settings"];
+  currentDevToolsPage: DevToolsPage | null = null;
+  logIcon: string = this.iconsService.get('BOOK');
+  settingsIcon: string = this.iconsService.get('SETTINGS');
 
   constructor() {
     this.buildVersion = environment.buildVersion;
@@ -40,23 +40,32 @@ export class DevHubComponent {
   }
 
   setDrawer(open: boolean) {
-    this.isDrawerOpen = false;
+    this.clearDynamicComponent();
+    this.isDrawerOpen = open;
   }
 
-  clearPin() {
-    this.unlockPin = "";
-    const element = this.otpInput?.el.nativeElement.querySelector('.p-inputotp-input');
-    if(element) {
-     element.focus();
+  toggleDevToolsPage(devToolsPage: DevToolsPage) {
+    if(this.currentDevToolsPage === devToolsPage) {
+      this.currentDevToolsPage = null;
+      this.clearDynamicComponent()
+      return;
     }
-    console.log("Pin cleared", element);
+    this.clearDynamicComponent()
+    this.loadDynamicComponent(devToolsPage);
+    this.currentDevToolsPage = devToolsPage;
   }
 
-  onPinInput() {
-    if(this.unlockPin === 'void') {
-      this.logger.debug("Pin entered", LogCategory.Core, this.unlockPin);
-      this.unlockPin = "";
-      this.devHubService.toggleDevMode();
+  private loadDynamicComponent(devToolsPage: DevToolsPage) {
+    const componentType = this.devToolsService.getDevToolComponent(devToolsPage);
+    if (this.dynamicContent) {
+      this.dynamicContent.createComponent(componentType);
+    } else {
+      this.logger.error("Dynamic Content is undefined", LogCategory.Core);
     }
+  }
+
+  private clearDynamicComponent() {
+    this.currentDevToolsPage = null;
+    this.dynamicContent?.clear();
   }
 }

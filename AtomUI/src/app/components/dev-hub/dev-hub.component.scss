@@ -1,25 +1,18 @@
-$drawer-width: 220px;
-$drawer-button-height: 100px;
-$transition-speed: 0.4s;
-$drawer-button-width: 20px;
-$drawer-offset: $drawer-width - $drawer-button-width;
-$negate-padding: calc(-1 * var(--proav-dimension-medium));
-
 .drawer-container {
   position: fixed;
-  width: $drawer-width;
+  width: 80px;
   right: 0;
   bottom: 132px;
   display: flex;
-  transform: translateX($drawer-offset);
-  transition: transform $transition-speed ease-in-out;
+  transform: translateX(60px);
+  transition: transform 0.4s ease-in-out;
   align-items: flex-end;
   z-index: calc(var(--proav-elevation-developer-master) + 1);
 
   .drawer-button {
-    height: $drawer-button-height;
-    width: $drawer-button-width;
-    transform: translateY($negate-padding);
+    height: 100px;
+    min-width: 20px;
+    transform: translateY(calc(-1 * var(--proav-dimension-medium))); // This works fine, ignore the haters
     border-top-left-radius: var(--proav-dimension-medium);
     border-bottom-left-radius: var(--proav-dimension-medium);
     writing-mode: vertical-rl;
@@ -27,9 +20,9 @@ $negate-padding: calc(-1 * var(--proav-dimension-medium));
   }
 
   .drawer {
-    width: calc($drawer-width - 20px);
-    min-height: 400px;
-    padding: var(--proav-dimension-medium);
+    min-width: calc(80px - 20px);
+    min-height: 200px;
+    padding: 10px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
@@ -41,7 +34,28 @@ $negate-padding: calc(-1 * var(--proav-dimension-medium));
 }
 
 .drawer-container-open {
-  transform: translateX($negate-padding) translateY(-80px);
+  transform: translateX(-40px) translateY(-80px);
+}
+
+.dev-tools-page-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: var(--proav-dimension-medium);
+  height: 100dvh;
+  width: 100%;
+  z-index: var(--proav-elevation-developer-master);
+}
+
+.dev-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-overflow: ellipsis;
+  text-align: center;
 }
 
 .dev-tools-build-id {
@@ -49,22 +63,4 @@ $negate-padding: calc(-1 * var(--proav-dimension-medium));
   bottom: 0;
   right: 10%;
   opacity: 0.4;
-}
-.drop-shield {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 60px;
-  height: 60px;
-  z-index: 9999;
-  opacity: 0;
-  cursor: default;
-  .secret-button {
-    height: 60px;
-    width: 60px;
-    background: teal;
-  }
-  .secret-no-touch {
-    pointer-events: none;
-  }
 }

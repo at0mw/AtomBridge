@@ -1,21 +1,18 @@
-@if (showDevTools()) {
-  <div [class.drawer-container-open]="isDrawerOpen" class="drawer-container">
-    <div (click)="toggleDrawer()" class="button drawer-button primary on-primary-text label-large">Dev Tools</div>
+<div [class.drawer-container-open]="isDrawerOpen" class="drawer-container">
+  <div (click)="toggleDrawer()" class="button drawer-button primary on-primary-text label-large">Dev Tools</div>
 
-    <div class="drawer surface-card">
-      <atom-logging-filter-dev-tool/>
-    </div>
+  <div class="drawer primary-container">
+    <p-button variant="outlined" [icon]="logIcon" (onClick)="toggleDevToolsPage('logs')"/>
+
+    <p-button variant="outlined" [icon]="settingsIcon" (onClick)="toggleDevToolsPage('settings')"/>
   </div>
-
-
-  @if (isDrawerOpen) {
-    <div @fadeInAndOut class="screen-darken z-ui-cover" (click)="setDrawer(false)"></div>
-  }
-  <div class="dev-tools-build-id">{{ buildVersion }}</div>
-}
-
-<div class="drop-shield">
-  <div class="secret-button" (click)="clearPin()"></div>
-  <p-input-otp #otpInput class="secret-no-touch" [(ngModel)]="unlockPin" (keyup.enter)="onPinInput()"/>
 </div>
 
+
+<ng-container #devToolsPage/>
+
+
+@if(isDrawerOpen || currentDevToolsPage) {
+  <div @fadeInAndOut class="screen-darken z-ui-cover" (click)="setDrawer(false)"></div>
+}
+<div class="dev-tools-build-id">{{ buildVersion }}</div>

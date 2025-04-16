@@ -6,3 +6,16 @@ a {
   text-decoration: none;
   color: inherit;
 }
+.dev-tools-page {
+  height: calc(100dvh - var(--proav-dimension-extra-large) * 2);
+  width: 80%;
+  position: fixed;
+  top: var(--proav-dimension-extra-large);
+  left: 10%;
+  z-index: var(--proav-elevation-developer-master);
+  background: var(--proav-sys-color-surface);
+  border-radius: var(--proav-dimension-medium);
+  border: 1px solid var(--proav-border-color-main);
+  padding: var(--proav-dimension-medium);
+  box-sizing: border-box;
+}

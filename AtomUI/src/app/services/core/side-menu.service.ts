@@ -7,7 +7,7 @@ import {SideMenuOptionInterface} from '@interfaces/core/side-menu-option.interfa
 export class SideMenuService {
   menuOptions = signal<SideMenuOptionInterface[]>(this.getMenuOptions());
   menuOptionsGrouped = computed(() => this.groupMenuOptions());
-  selectedOption = signal<null | number>(null);
+  selectedOption = signal<number>(1);
 
 
   setSelected(id: number) {
@@ -42,7 +42,7 @@ export class SideMenuService {
       {
         id: 2,
         label: "weather",
-        icon: "fa-sharp fa-light fa-sun",
+        icon: "fa-sharp fa-light fa-sun-bright",
         url: ''
       },
       {

@@ -1,0 +1,31 @@
+<div #gridContainer [class.hide-grid]="hide" [style.height]="totalHeight" class="data-list-grid-container">
+  <ag-grid-angular #theGrid
+                   (cellClicked)="onCellClicked($event)"
+                   (cellKeyDown)="onCellKeyDown($event)"
+                   (columnVisible)="onUpdateColumns()"
+                   (filterChanged)="onFilterChanged($event)"
+                   (firstDataRendered)="onFirstDataRendered($event)"
+                   (gridReady)="onGridReady($event)"
+                   (rowClicked)="onRowClicked($event)"
+                   (rowDataUpdated)="onRowDataUpdated($event)"
+                   [columnDefs]="colDefs"
+                   [defaultColDef]="defaultColDef"
+                   [gridOptions]="gridOptions"
+                   [loading]="loading"
+                   [overlayNoRowsTemplate]="noRowsTemplate"
+                   [rowData]="data"
+                   [rowHeight]="rowHeight"
+                   [style.height]="'100%'"
+                   [theme]="theme"
+                   [tooltipHideDelay]="tooltipHideDelay"
+                   [tooltipShowDelay]="tooltipShowDelay"/>
+  @if (columnMenu) {
+    <proActiV-table-side-menu (triggerClearFilters)="onClearFilters()"
+                          (updateColumnVisibility)="onUpdateColumnVisibility($event)"
+                          [enableColumnMenu]="enableColumnMenu"
+                          [enableFiltersMenu]="enableFiltersMenu"
+                          [columnStates]="(columnStates$ | async) ?? []"
+                          [activeColumnLimit]="activeColumnLimit"/>
+  }
+</div>
+

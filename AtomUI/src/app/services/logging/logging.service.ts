@@ -3,71 +3,78 @@ import {LogLevel, logLevelColour} from '@enums/logging/log-level.enum';
 import {LogCategory, logCategoryColour} from '@enums/logging/log-category.enum';
 import {DevHubService} from '@services/developer/dev-hub.service';
 import {LoggingConfigService} from '@services/logging/logging-config.service';
+import {LogEntry} from '@interfaces/logging/log-entry.interface';
+import {LoggerCacheService} from '@services/logging/logger-cache.service';
+import {environment} from '@environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoggingService {
   private loggingConfigService = inject(LoggingConfigService);
+  private loggerCacheService = inject(LoggerCacheService);
 
   // Set these from config
   private debugMode: boolean = true;
-  private enabledCategoriesSet: Set<LogCategory> = new Set([LogCategory.All]);
+  private enabledCategories: Set<LogCategory> = new Set(environment.production ? [] : [LogCategory.All]); // Enable all categories by default
   private maxLogLevel: LogLevel = LogLevel.Debug;
-  enabledCategories = signal([...this.enabledCategoriesSet]);
-  private readonly devHubService = inject(DevHubService);
-  devMode = this.devHubService.showDevTools;
-
 
   constructor() {
-    this.retrieveStoredSelectedCategories();
     this.loggingConfigService.logConfig$.subscribe((config) => {
-      if (!config || this.devMode()) return;
-
+      if (!config) return;
+      console.log("Logging config loaded", config);
       this.debugMode = config.debugMode;
-      this.enabledCategoriesSet = new Set(config.enabledCategories);
-      this.enabledCategories.set([...this.enabledCategoriesSet]);
+      this.enabledCategories = new Set(config.enabledCategories);
       this.maxLogLevel = config.logLevel;
-    });
-
-    effect(() => {
-      this.debug("Storing Enabled Categories", LogCategory.Core);
-      localStorage.setItem('enabledCategories', JSON.stringify(this.enabledCategories()));
     });
   }
 
   // Enable logging for a specific category
   enableCategory(category: LogCategory): void {
-    this.enabledCategoriesSet.add(category);
-    this.enabledCategories.set([...this.enabledCategoriesSet]);
+    this.enabledCategories.add(category);
   }
 
   // Disable logging for a specific category
   disableCategory(category: LogCategory): void {
-    this.enabledCategoriesSet.delete(category);
-    this.enabledCategories.set([...this.enabledCategoriesSet]);
+    this.enabledCategories.delete(category);
   }
 
   // Main logging method
-  private log(message: string, level: LogLevel, category: LogCategory, params: any | null = null) {
-    // console.log("Log Level: ", level, " Max Level: ", this.maxLogLevel);
-    // console.log("Level Is Viable: ", this.maxLogLevel >= level);
-    if ((this.enabledCategoriesSet.has(LogCategory.All) || this.enabledCategoriesSet.has(category)) && this.maxLogLevel >= level) {
-      const levelName = LogLevel[level];
-      const colour = logLevelColour(level);
-      const categoryColour = logCategoryColour(category);
-      const categoryName = LogCategory[category];
-      const callerInfo = this.debugMode ? `[${this.getCallerInfo()}]` : "";
 
+  private createLogEntry(message: string, level: LogLevel, category: LogCategory, params: any | null = null): LogEntry {
+    const levelName = LogLevel[level];
+    const colour = logLevelColour(level);
+    const categoryColour = logCategoryColour(category);
+    const categoryName = LogCategory[category];
+    const callerInfo = this.debugMode ? `[${this.getCallerInfo()}]` : "";
+    const currentTime = new Date();
+    return {
+      message,
+      level,
+      levelName,
+      category,
+      categoryName,
+      colour,
+      categoryColour,
+      callerInfo,
+      timestamp: currentTime,
+      params,
+    }
+  }
+
+  private log(message: string, level: LogLevel, category: LogCategory, params: any | null = null) {
+    const logEntry = this.createLogEntry(message, level, category, params);
+    this.loggerCacheService.addLog(logEntry);
+    if ((this.enabledCategories.has(LogCategory.All) || this.enabledCategories.has(category)) && this.maxLogLevel >= level) {
       switch (level) {
         case LogLevel.Error:
-          console.error(`%c[${categoryName}] ${callerInfo} ---//ProActiV ${levelName.toUpperCase()} :: ${message}`, `color: ${colour};`, params ?? "");
+          console.error(`%c[${logEntry.categoryName}] ${logEntry.callerInfo} ---// proAV ${logEntry.levelName.toUpperCase()} :: ${message}`, `color: ${logEntry.colour};`, params ?? "");
           break;
         case LogLevel.Warn:
-          console.warn(`%c[${categoryName}] ${callerInfo} ---//ProActiV ${levelName.toUpperCase()} :: ${message}`, `color: ${colour};`, params ?? "");
+          console.warn(`%c[${logEntry.categoryName}] ${logEntry.callerInfo} ---// proAV ${logEntry.levelName.toUpperCase()} :: ${message}`, `color: ${logEntry.colour};`, params ?? "");
           break;
         default:
-          console.log(`%c[${categoryName}] ${callerInfo} ---//ProActiV ${levelName.toUpperCase()} :: ${message}`, `color: ${categoryColour};`, params ?? "");
+          console.log(`%c[${logEntry.categoryName}] ${logEntry.callerInfo} ---// proAV ${logEntry.levelName.toUpperCase()} :: ${message}`, `color: ${logEntry.categoryColour};`, params ?? "");
           break;
       }
     }
@@ -114,18 +121,5 @@ export class LoggingService {
   private extractMethodName(stackLine: string): string {
     const match = stackLine.match(/at (\S+)/); // Extracts method name after "at "
     return match ? match[1] : "UnknownMethod";
-  }
-
-  private retrieveStoredSelectedCategories() {
-    const enabledCategories = localStorage.getItem('enabledCategories');
-    if (enabledCategories) {
-      this.enabledCategoriesSet = new Set(JSON.parse(enabledCategories));
-      this.enabledCategories.set([...this.enabledCategoriesSet]);
-    }
-  }
-
-  clearCategories() {
-    this.enabledCategoriesSet.clear();
-    this.enabledCategories.set([...this.enabledCategoriesSet]);
   }
 }

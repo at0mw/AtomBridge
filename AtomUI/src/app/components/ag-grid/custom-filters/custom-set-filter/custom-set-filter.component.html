@@ -1,0 +1,40 @@
+<div class="filter-container surface on-surface-text">
+  <div class="filter-header standard-margin-bottom">
+    <p-floatlabel variant="on">
+      <input (input)="onSearchChange()" [(ngModel)]="filterTerm" class="filter-input" id="filter_search" pInputText
+             type="text"/>
+      <label class="body-large" for="filter_search">Search Filters</label>
+    </p-floatlabel>
+  </div>
+  <div class="category-list ag-simple-filter-list">
+
+    @for (category of filteredCategories; track category) {
+      <div class="flex-row gap-sm" (click)="onFilterChanged(category)">
+        <p-checkbox [ngModel]="selectedCategories.has(category)" [binary]="true"/>
+        <span>{{category}}</span>
+      </div>
+    }
+    @if (filteredCategories.length === 0) {
+      <div class="body-medium padding-right-medium padding-left-medium">No Categories Found</div>
+    }
+
+  </div>
+  <div class="standard-margin-top standard-margin-bottom">
+    <div class="flex-row gap-sm">
+      <p-floatlabel variant="on">
+        <input [(ngModel)]="customFilter" class="filter-input" id="custom_filter" pInputText type="text"/>
+        <label class="body-large" for="custom_filter">Custom Filter</label>
+      </p-floatlabel>
+
+      <p-button (click)="onAddCustomFilter()" [disabled]="!customFilter" [styleClass]="'filter-button'"
+                icon="fa-regular fa-plus"></p-button>
+
+    </div>
+  </div>
+
+  <div class="custom-filter-chips gap-sm standard-margin-bottom">
+    @for (customFilter of customFilters; track customFilter) {
+      <p-chip label="{{customFilter}}" (onRemove)="onRemoveCustomFilter(customFilter)" [removable]="true"/>
+    }
+  </div>
+</div>
