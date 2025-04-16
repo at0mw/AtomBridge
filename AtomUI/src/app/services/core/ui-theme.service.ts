@@ -22,6 +22,8 @@ export class UiThemeService {
     if (isThemeMode(themeMode)) {
       this.themeMode.set(themeMode);
       document.documentElement.setAttribute('data-theme-mode', themeMode);
+    } else {
+      this.setThemeMode(THEME_MODE_TYPE.LIGHT);
     }
   }
 
