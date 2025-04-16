@@ -12,5 +12,7 @@
     config: string;
     maxLogCache: number;
   };
-  devMode: boolean;
+  developer: {
+    enabled: boolean;
+  }
 }

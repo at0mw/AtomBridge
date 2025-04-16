@@ -1,0 +1,70 @@
+$drawer-width: 220px;
+$drawer-button-height: 100px;
+$transition-speed: 0.4s;
+$drawer-button-width: 20px;
+$drawer-offset: $drawer-width - $drawer-button-width;
+$negate-padding: calc(-1 * var(--proav-dimension-medium));
+
+.drawer-container {
+  position: fixed;
+  width: $drawer-width;
+  right: 0;
+  bottom: 132px;
+  display: flex;
+  transform: translateX($drawer-offset);
+  transition: transform $transition-speed ease-in-out;
+  align-items: flex-end;
+  z-index: calc(var(--proav-elevation-developer-master) + 1);
+
+  .drawer-button {
+    height: $drawer-button-height;
+    width: $drawer-button-width;
+    transform: translateY($negate-padding);
+    border-top-left-radius: var(--proav-dimension-medium);
+    border-bottom-left-radius: var(--proav-dimension-medium);
+    writing-mode: vertical-rl;
+    text-align: center;
+  }
+
+  .drawer {
+    width: calc($drawer-width - 20px);
+    min-height: 400px;
+    padding: var(--proav-dimension-medium);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    border-radius: var(--proav-dimension-medium);
+  }
+}
+
+.drawer-container-open {
+  transform: translateX($negate-padding) translateY(-80px);
+}
+
+.dev-tools-build-id {
+  position: fixed;
+  bottom: 0;
+  right: 10%;
+  opacity: 0.4;
+}
+.drop-shield {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+  z-index: 9999;
+  opacity: 0;
+  cursor: default;
+  .secret-button {
+    height: 60px;
+    width: 60px;
+    background: teal;
+  }
+  .secret-no-touch {
+    pointer-events: none;
+  }
+}

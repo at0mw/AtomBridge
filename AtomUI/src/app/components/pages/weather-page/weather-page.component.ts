@@ -6,7 +6,7 @@ import {environment} from "@environments/environment";
 import {WeatherForecast} from "@interfaces/data-model/weather-forecast.interface";
 
 @Component({
-    selector: 'app-weather-page',
+    selector: 'atom-weather-page',
     imports: [
         Button
     ],

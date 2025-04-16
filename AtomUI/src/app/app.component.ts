@@ -1,14 +1,15 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {Router, RouterLink, RouterOutlet} from '@angular/router';
+import {Router, RouterOutlet} from '@angular/router';
 import {Button} from 'primeng/button';
-import {WebsocketService} from '@services/websocket.service';
+import {WebsocketService} from '@services/communication/websocket.service';
 import {WebSocketState} from '@interfaces/communication/websocket-service.interface';
 import {Observable} from 'rxjs';
 import {AsyncPipe} from '@angular/common';
+import {DevHubComponent} from '@components/dev-hub/dev-hub.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Button, AsyncPipe],
+  imports: [RouterOutlet, Button, AsyncPipe, DevHubComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

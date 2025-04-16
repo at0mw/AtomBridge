@@ -5,9 +5,11 @@ import {provideHttpClient} from '@angular/common/http';
 import {providePrimeNG} from 'primeng/config';
 import {primeNgToTokens} from '@styling/prime-ng/prime-ng-to-tokens';
 import {APP_BASE_HREF} from '@angular/common';
+import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideAnimationsAsync(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withDisabledInitialNavigation(), withHashLocation()),
     provideHttpClient(),

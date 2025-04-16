@@ -12,6 +12,10 @@ export enum LogCategory {
   Surfaces
 }
 
+export const LogCategoryNames = Object.keys(LogCategory)
+  .filter((key) => isNaN(Number(key)));
+
+
 export function logCategoryColour(level: LogCategory): string {
   // Generate a color based on the Enum value
   function generateColor(index: number): string {

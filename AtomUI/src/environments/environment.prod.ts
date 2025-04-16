@@ -14,6 +14,8 @@ export const environment: Environment = {
       config: "/config/logging-config/development-log.config.json",
       maxLogCache: 500
     },
-    devMode: true
+    developer: {
+      enabled: true,
+    },
   }
 ;

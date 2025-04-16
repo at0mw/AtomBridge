@@ -1,0 +1,14 @@
+
+<div class="checkboxes">
+  @for(category of logCategories(); track category.value) {
+    <div class="checkbox-container" (click)="toggleSelection(category)">
+      <p-checkbox binary="true" [ngModel]="category.selected" />
+      {{category.name}}
+    </div>
+  }
+</div>
+
+<div class="flex-row gap-md align-center justify-center">
+  <p-button [fluid]="true" [label]="'All'" [icon]="'fa-regular fa-plus'" (onClick)="selectAll()"/>
+  <p-button [fluid]="true" [label]="'All'" [icon]="'fa-regular fa-minus'" (onClick)="deselectAll()"/>
+</div>

@@ -1,0 +1,21 @@
+@if (showDevTools()) {
+  <div [class.drawer-container-open]="isDrawerOpen" class="drawer-container">
+    <div (click)="toggleDrawer()" class="button drawer-button primary on-primary-text label-large">Dev Tools</div>
+
+    <div class="drawer surface-card">
+      <atom-logging-filter-dev-tool/>
+    </div>
+  </div>
+
+
+  @if (isDrawerOpen) {
+    <div @fadeInAndOut class="screen-darken z-ui-cover" (click)="setDrawer(false)"></div>
+  }
+  <div class="dev-tools-build-id">{{ buildVersion }}</div>
+}
+
+<div class="drop-shield">
+  <div class="secret-button" (click)="clearPin()"></div>
+  <p-input-otp #otpInput class="secret-no-touch" [(ngModel)]="unlockPin" (keyup.enter)="onPinInput()"/>
+</div>
+

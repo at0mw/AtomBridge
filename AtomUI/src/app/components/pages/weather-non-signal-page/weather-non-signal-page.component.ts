@@ -1,12 +1,11 @@
 import {Component, effect, inject} from '@angular/core';
 import {Button} from 'primeng/button';
 import {HttpClient} from '@angular/common/http';
-import {rxResource} from '@angular/core/rxjs-interop';
 import {WeatherForecast} from '@interfaces/data-model/weather-forecast.interface';
 import {environment} from '@environments/environment';
 
 @Component({
-  selector: 'app-weather-non-signal-page',
+  selector: 'atom-weather-non-signal-page',
   imports: [
     Button
   ],

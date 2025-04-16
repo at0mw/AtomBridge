@@ -2,7 +2,7 @@ import {inject, Injectable} from '@angular/core';
 import {BehaviorSubject, filter, Observable, Subject, take, throwError} from 'rxjs';
 import {environment} from "@environments/environment";
 import {WebsocketServiceInterface, WebSocketState} from '@interfaces/communication/websocket-service.interface';
-import {LoggingService} from '@services/logging.service';
+import {LoggingService} from '@services/logging/logging.service';
 import {LogCategory} from '@enums/logging/log-category.enum';
 import {RpcResponse} from '@interfaces/communication/rpc-response.interface';
 import {RpcRequest} from '@interfaces/communication/rpc-request.interface';
