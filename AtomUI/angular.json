@@ -34,6 +34,7 @@
             "styles": [
               "src/styles.scss",
               "src/styling/index.styling.scss",
+              "src/styling/touch-panel.styling.scss",
               "src/styling/theme.css"
             ],
             "scripts": []

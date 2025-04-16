@@ -1,0 +1,14 @@
+﻿html,
+body {
+  overflow-x: hidden;
+  overscroll-behavior: none;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  overflow: hidden;
+}

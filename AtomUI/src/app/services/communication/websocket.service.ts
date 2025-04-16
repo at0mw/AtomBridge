@@ -1,4 +1,4 @@
-import {inject, Injectable} from '@angular/core';
+import {inject, Injectable, Signal, signal} from '@angular/core';
 import {BehaviorSubject, filter, Observable, Subject, take, throwError} from 'rxjs';
 import {environment} from "@environments/environment";
 import {WebsocketServiceInterface, WebSocketState} from '@interfaces/communication/websocket-service.interface';
@@ -18,23 +18,23 @@ export class WebsocketService implements WebsocketServiceInterface {
   private reconnectInterval = 5000;
   private url: string = environment.websocket.url;
   private messageSubject = new Subject<any>();
-  private connectionState = new BehaviorSubject<WebSocketState>("CLOSED");
+  private connectionState = signal<WebSocketState>("CLOSED");
   private dontAttemptReconnect = false;
 
   connect() {
     this.logger.info(`Connecting to WebSocket at ${this.url}`,  LogCategory.Websocket);
-    this.connectionState.next("CONNECTING");
+    this.connectionState.set("CONNECTING");
 
     this.socket = new WebSocket(this.url);
 
     this.socket.onopen = () => {
       this.logger.info("WebSocket connection established", LogCategory.Websocket);
-      this.connectionState.next("OPEN");
+      this.connectionState.set("OPEN");
     };
 
     this.socket.onclose = (event) => {
       this.logger.warn("WebSocket disconnected...", LogCategory.Websocket);
-      this.connectionState.next("CLOSED");
+      this.connectionState.set("CLOSED");
 
       if(!this.dontAttemptReconnect) {
         this.logger.warn("Attempting to reconnect...", LogCategory.Websocket);
@@ -80,7 +80,7 @@ export class WebsocketService implements WebsocketServiceInterface {
     return this.messageSubject.asObservable();
   }
 
-  connectionStatus(): Observable<WebSocketState> {
-    return this.connectionState.asObservable();
+  connectionStatus(): Signal<WebSocketState> {
+    return this.connectionState;
   }
 }

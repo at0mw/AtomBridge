@@ -1,0 +1,7 @@
+<div class="standard-page">
+  <h1>Websocket Connection: {{websocketConnectionStatus()}}</h1>
+  <div class="flex-row gap-md">
+    <p-button [label]="" [loading]="websocketConnectionStatus() === 'CONNECTING'"/>
+  </div>
+</div>
+

@@ -1,1 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --standard-nav-bar-colour: var(--proav-sys-color-primary);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

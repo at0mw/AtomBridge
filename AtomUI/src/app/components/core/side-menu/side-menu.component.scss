@@ -1,0 +1,95 @@
+.side-menu-container {
+  width: 5rem;
+  //width: 0;
+  height: 100%;
+  transition: width 0.5s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  background: var(--standard-nav-bar-colour);
+
+  .top-button {
+    height: 64px;
+    border-right: solid 1px var(--proav-sys-color-outline-variant);
+    border-bottom: solid 1px var(--proav-on-nav-bar-border-colour);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    //padding: 1rem 0.5rem;
+    padding: 0 2px;
+
+    .pad-logo {
+      //padding: 2px 2px;
+      border-radius: var(--proav-dimension-extra-small);
+    }
+
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+
+  &.expanded {
+    width: 15rem;
+  }
+
+  .side-menu-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    //height: 100%;
+    gap: 1rem;
+    padding: 1rem 0 4rem;
+
+    .top-bar {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1rem 0 4rem;
+    }
+
+    .menu-titles {
+      padding: 0 22px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.031rem;
+      white-space: nowrap;
+      transition: height 0.4s ease-in-out;
+      height: 16px;
+      overflow: hidden;
+      opacity: 0.7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &.first-title {
+        height: 0;
+      }
+
+      &.expanded {
+        justify-content: flex-start;
+
+        &.first-title {
+          height: 16px;
+        }
+      }
+    }
+
+    .bottom-bar {
+
+    }
+  }
+}
+
+::ng-deep {
+  .p-button {
+    &.full-button {
+      height: 44px;
+      width: 100%;
+    }
+  }
+}
+
+//@media only screen and (min-width: 768px) {
+//  // For Ipad?
+//  .side-menu-container {
+//  }
+//}

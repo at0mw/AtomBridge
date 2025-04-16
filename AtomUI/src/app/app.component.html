@@ -1,16 +1,15 @@
-<div class="flex-row gap-md standard-margin-bottom">
-  <p-button (onClick)="onNavigateToHome()" [label]="'Navigate Home'"></p-button>
-  <p-button (onClick)="onNavigateToWeather()" [label]="'Navigate To Weather'"></p-button>
-  <p-button (onClick)="onNavigateToWeatherNonSignal()" [label]="'Navigate To Weather Non Signal'"></p-button>
+<div class="main-page-container">
+  <div class="side-content">
+    <atom-side-menu/>
+  </div>
 
-</div>
-<div class="body-large standard-margin-bottom">
-  Websocket Connection Status: {{websocketConnectionStatus | async}}
-</div>
-<div class="flex-row gap-md standard-margin-bottom">
-  <p-button (onClick)="onWebsocketChangeState(true)" [label]="'Connect Ws'"></p-button>
-  <p-button (onClick)="onWebsocketChangeState(false)" [label]="'Disconnect Ws'"></p-button>
+  <div class="main-content overflow-hidden">
+    <atom-header-bar/>
+    <div class="main-content-window">
+      <router-outlet/>
+    </div>
+  </div>
 </div>
 
-<router-outlet/>
+
 <atom-dev-hub/>

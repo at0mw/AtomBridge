@@ -1,0 +1,109 @@
+.header-container {
+  padding: var(--proav-dimension-medium);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+  box-sizing: border-box;
+  box-shadow: -7.829px 11.607px 20px 0px rgba(144, 143, 160, 0.09);
+  z-index: var(--proav-elevation-five);
+
+  .left-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--proav-dimension-small);
+
+    .account-dropdown-button {
+      height: 44px;
+      display: flex;
+      gap: var(--proav-dimension-extra-small);
+      align-items: center;
+      cursor: pointer;
+    }
+  }
+
+  .right-controls {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--proav-dimension-small);
+  }
+}
+
+.header-button {
+  display: flex;
+  height: 44px;
+  width: 44px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--proav-sys-color-surface-container-high);
+
+    &.settings-button {
+      animation: spin 2s infinite linear;
+    }
+  }
+
+  .profile-image {
+    border-radius: 50%;
+  }
+
+  .user-icon {
+    background: var(--proav-sys-color-tertiary-container);
+    color: var(--proav-sys-color-on-tertiary-container);
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+
+.light-dark-mode-button {
+  overflow: hidden;
+
+  &.toggled {
+    i {
+      animation: fromAbove 0.3s forwards;
+    }
+
+    &.dark-mode {
+      i {
+        animation: fromBelow 0.3s forwards;
+      }
+    }
+  }
+}
+
+@keyframes fromAbove {
+  from {
+    top: -20px;
+  }
+  to {
+    top: 0;
+  }
+}
+
+
+@keyframes fromBelow {
+  from {
+    bottom: -20px;
+  }
+  to {
+    bottom: 0;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

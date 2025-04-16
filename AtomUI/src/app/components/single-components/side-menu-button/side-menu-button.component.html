@@ -1,0 +1,17 @@
+<a class="side-menu-button-container relative-container"
+   [class.expanded]="expanded" [class.active]="menuOptionSelected" (click)="onMenuOptionSelected()">
+
+  <div class="side-menu-button">
+
+    <div class="menu-icon">
+      <i [ngClass]="menuOption.icon" class="small-icon"></i>
+    </div>
+    <div class="menu-label label-large">
+      <div class="relative-container menu-text">{{ menuOption.label}}</div>
+    </div>
+
+    <div class="edge-bar top"></div>
+    <div class="edge-bar bottom"></div>
+  </div>
+
+</a>

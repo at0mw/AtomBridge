@@ -1,0 +1,39 @@
+<div [class.expanded]="showMenuExpanded() || hoveringExpandMenu"
+     class="side-menu-container on-nav-bar-colour">
+  <div (click)="goHome()" class="top-button">
+
+  </div>
+  <div class="side-menu-bar">
+    <div class="top-bar">
+      @for (menuGroup of menuOptionsGrouped(); track menuGroup.group; let idx = $index) {
+        <span class="label-medium menu-titles" [class.first-title]="idx === 0"
+              [class.expanded]="showMenuExpanded() || hoveringExpandMenu">
+          @if (!showMenuExpanded() || hoveringExpandMenu) {
+            <i class="fa-solid fa-ellipsis"></i>
+          } @else {
+            {{ menuGroup.group }}
+          }
+        </span>
+        @for (menuOption of menuGroup.menuOptions; track menuOption.id) {
+
+          <atom-side-menu-button [routerDestination]="menuOption.url"
+                                     [menuOption]="menuOption"
+                                     [menuOptionSelected]="menuOption.id === selectedOption()"
+                                     [expanded]="showMenuExpanded() || hoveringExpandMenu"
+                                     (action)="onMenuButtonAction(menuOption)">
+          </atom-side-menu-button>
+        }
+      }
+
+
+    </div>
+
+
+    <div class="bottom-bar relative-container z-ui-cover">
+
+
+    </div>
+  </div>
+
+
+</div>
