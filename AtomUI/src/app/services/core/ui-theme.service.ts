@@ -13,23 +13,11 @@ export class UiThemeService {
   themeMode = signal<ThemeMode>(THEME_MODE_TYPE.LIGHT);
   //#endregion
 
-  constructor() {
-    this.retrieveStoredMode();
-  }
-
-  retrieveStoredMode() {
-    const themeMode = localStorage.getItem('themeMode');
-    if (isThemeMode(themeMode)) {
-      this.themeMode.set(themeMode);
-      document.documentElement.setAttribute('data-theme-mode', themeMode);
-    }
-  }
-
   setThemeMode(mode: string) {
     if(!isThemeMode(mode)) return;
     this.themeMode.set(mode);
     document.documentElement.setAttribute('data-theme-mode', mode);
-    localStorage.setItem('themeMode', mode);
+    // localStorage.setItem('themeMode', mode);
   }
 
   themeModeToggle() {
