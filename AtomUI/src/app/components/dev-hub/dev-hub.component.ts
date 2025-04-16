@@ -30,6 +30,7 @@ export class DevHubComponent {
   currentDevToolsPage: DevToolsPage | null = null;
   logIcon: string = this.iconsService.get('BOOK');
   settingsIcon: string = this.iconsService.get('SETTINGS');
+  moonIcon: string = this.iconsService.get('MOON');
 
   constructor() {
     this.buildVersion = environment.buildVersion;

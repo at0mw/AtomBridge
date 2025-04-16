@@ -1,0 +1,18 @@
+.sleep-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 10rem;
+  background: #000;
+  height: 100dvh;
+  width: 100%;
+  opacity: 0.9;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--proav-elevation-developer-master);
+
+  .time-text {
+    color: #fff;
+  }
+}

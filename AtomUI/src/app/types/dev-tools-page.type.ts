@@ -1,1 +1,1 @@
-﻿export type DevToolsPage = 'logs' | 'settings';
+﻿export type DevToolsPage = 'logs' | 'settings' | 'sleep';

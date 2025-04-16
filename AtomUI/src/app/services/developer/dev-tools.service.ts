@@ -3,6 +3,7 @@ import {environment} from "@environments/environment";
 import {DevToolsPage} from "@types-custom/dev-tools-page.type";
 import {LogsDevToolsComponent} from "@components/dev-hub/dev-tools/logs-dev-tools/logs-dev-tools.component";
 import {SettingsDevToolsComponent} from "@components/dev-hub/dev-tools/settings-dev-tools/settings-dev-tools.component";
+import {SleepDisplayComponent} from '@components/dev-hub/dev-tools/sleep-display/sleep-display.component';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,8 @@ export class DevToolsService {
 
   private _devToolComponents: Record<DevToolsPage, any> = {
     'logs': LogsDevToolsComponent,
-    'settings': SettingsDevToolsComponent
+    'settings': SettingsDevToolsComponent,
+    'sleep': SleepDisplayComponent
   };
 
   getDevToolComponent(name: DevToolsPage) {
