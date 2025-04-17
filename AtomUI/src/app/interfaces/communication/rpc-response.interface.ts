@@ -1,4 +1,6 @@
-﻿export interface RpcResponse<T = any> {
+﻿import { z } from 'zod';
+
+export interface RpcResponse<T = any> {
   jsonrpc: "2.0";
   id: string;
   result?: T;
@@ -10,3 +12,16 @@ export interface RpcError {
   message: string;
   data?: any;
 }
+
+const RpcErrorSchema = z.object({
+  code: z.number(),
+  message: z.string(),
+  data: z.any().optional(),
+});
+
+export const RpcResponseSchema = z.object({
+  jsonrpc: z.literal("2.0"),
+  id: z.string(),
+  result: z.optional(z.unknown()),
+  error: z.optional(RpcErrorSchema),
+});

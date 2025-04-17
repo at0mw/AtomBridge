@@ -30,6 +30,7 @@
     "primeng": "^19.0.10",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "zod": "^4.0.0-beta.20250417T043022",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
