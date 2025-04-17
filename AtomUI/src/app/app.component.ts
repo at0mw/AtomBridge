@@ -12,8 +12,8 @@ import {SideMenuComponent} from '@components/core/side-menu/side-menu.component'
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
-  private readonly _router = inject(Router);
   private readonly _websocket = inject(WebsocketService);
+
   title = 'AtomUI';
 
   ngOnInit(): void {

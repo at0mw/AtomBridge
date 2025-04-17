@@ -7,7 +7,7 @@ import {ConnectionPageComponent} from '@components/pages/connection-page/connect
 import {HomePageComponent} from '@components/pages/home-page/home-page.component';
 
 export const routes: Routes = [
-  {path: '', component: HomePageComponent},
+  {path: 'home', component: HomePageComponent},
   {path: 'weather', component: WeatherPageComponent},
   {path: 'weather-non-signal', component: WeatherNonSignalPageComponent},
   {path: 'connection', component: ConnectionPageComponent}

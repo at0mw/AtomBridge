@@ -6,6 +6,7 @@ import {SideMenuButtonComponent} from '@components/single-components/side-menu-b
 import {UiBaseService} from '@services/core/ui-base.service';
 import {MenuOption} from '@interfaces/core/menu-option.interface';
 import {SideMenuOptionInterface} from '@interfaces/core/side-menu-option.interface';
+import {CurrentRouteService} from '@services/core/current-route.service';
 
 @Component({
   selector: 'atom-side-menu',
@@ -19,11 +20,13 @@ export class SideMenuComponent {
   //#region Variables
   private uiBaseService = inject(UiBaseService);
   private sideMenuService = inject(SideMenuService);
+  private readonly currentRouteService = inject(CurrentRouteService);
   private logger = inject(LoggingService);
   private router = inject(Router);
   showMenuExpanded = this.uiBaseService.sideMenuExpanded;
   menuOptionsGrouped = this.sideMenuService.menuOptionsGrouped;
   selectedOption = this.sideMenuService.selectedOption;
+  currentRoute = this.currentRouteService.currentRoute;
 
   hoveringExpandMenu: boolean = false;
   activeMenuButtonId: number = 1;

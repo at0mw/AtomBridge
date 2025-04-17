@@ -6,6 +6,9 @@
   </div>
 
   <div class="right-controls">
+    <div>
+      {{currentRoute()}}
+    </div>
     <div class="header-button light-dark-mode-button" (click)="onLightDarkModeToggle()"
          [class.dark-mode]="themeMode() === 'dark'" [class.toggled]="themeModeToggled">
       <i class="relative-container fa-light small-icon"

@@ -7,11 +7,8 @@ import {LogCategory} from '@enums/logging/log-category.enum';
   providedIn: 'root'
 })
 export class UiThemeService {
-  //#region Variables
   private readonly logger = inject(LoggingService);
-
   themeMode = signal<ThemeMode>(THEME_MODE_TYPE.LIGHT);
-  //#endregion
 
   setThemeMode(mode: string) {
     if(!isThemeMode(mode)) return;

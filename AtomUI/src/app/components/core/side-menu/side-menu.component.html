@@ -18,7 +18,7 @@
 
           <atom-side-menu-button [routerDestination]="menuOption.url"
                                      [menuOption]="menuOption"
-                                     [menuOptionSelected]="menuOption.id === selectedOption()"
+                                     [menuOptionSelected]="menuOption.url === currentRoute()"
                                      [expanded]="showMenuExpanded() || hoveringExpandMenu"
                                      (action)="onMenuButtonAction(menuOption)">
           </atom-side-menu-button>

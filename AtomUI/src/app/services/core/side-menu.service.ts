@@ -37,13 +37,13 @@ export class SideMenuService {
         id: 1,
         label: "home",
         icon: "fa-sharp fa-light fa-house",
-        url: ''
+        url: 'home'
       },
       {
         id: 2,
         label: "weather",
         icon: "fa-sharp fa-light fa-sun-bright",
-        url: ''
+        url: 'weather'
       },
       {
         id: 3,
