@@ -1,9 +1,11 @@
 using System.Text;
+using AtomBridge.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddOpenApi();
+builder.Services.AddSingleton<IWebSocketHandler, WebSocketHandler>();
 
 // Add CORS policy configuration
 builder.Services.AddCors(options =>
@@ -40,32 +42,16 @@ app.Map("/ws", async context =>
 {
     if (context.WebSockets.IsWebSocketRequest)
     {
-        using var webSocket = await context.WebSockets.AcceptWebSocketAsync();
-        var logger = app.Logger;
-        logger.LogInformation("WebSocket connection established");
-
-        var buffer = new byte[1024 * 4];
-        var result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
-        
-        while (!result.CloseStatus.HasValue)
-        {
-            var message = Encoding.UTF8.GetString(buffer, 0, result.Count);
-            logger.LogInformation("Received: {message}", message);
-
-            var response = Encoding.UTF8.GetBytes($"Echo: {message}");
-            await webSocket.SendAsync(new ArraySegment<byte>(response), result.MessageType, result.EndOfMessage, CancellationToken.None);
-
-            result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
-        }
-
-        await webSocket.CloseAsync(result.CloseStatus.Value, result.CloseStatusDescription, CancellationToken.None);
-        logger.LogInformation("WebSocket connection closed");
+        var webSocket = await context.WebSockets.AcceptWebSocketAsync();
+        var webSocketHandler = app.Services.GetRequiredService<IWebSocketHandler>();
+        await webSocketHandler.HandleWebSocketAsync(webSocket, context.RequestAborted);
     }
     else
     {
         context.Response.StatusCode = 400;
     }
 });
+
 
 app.MapGet("/weatherforecast", () =>
     {

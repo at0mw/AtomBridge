@@ -1,5 +1,5 @@
 import {inject, Injectable, Signal, signal} from '@angular/core';
-import {BehaviorSubject, filter, Observable, Subject, take, throwError} from 'rxjs';
+import {filter, Observable, Subject, take, throwError} from 'rxjs';
 import {environment} from "@environments/environment";
 import {WebsocketServiceInterface, WebSocketState} from '@interfaces/communication/websocket-service.interface';
 import {LoggingService} from '@services/logging/logging.service';
@@ -48,6 +48,8 @@ export class WebsocketService implements WebsocketServiceInterface {
       this.logger.error("WebSocket error occurred", LogCategory.Websocket);
       this.socket?.close();
     };
+
+    this.socket.onmessage = (event) => {this.messageSubject.next(event);}
   }
 
   private reconnect() {
@@ -57,9 +59,11 @@ export class WebsocketService implements WebsocketServiceInterface {
     }
   }
 
-  sendMessage<T extends RpcResponse>(message: RpcRequest): Observable<T> {
+  sendMessage<T extends RpcResponse>(message: RpcRequest){
     if (this.socket && this.socket.readyState === WebSocket.OPEN) {
-      this.socket.send(JSON.stringify(message));
+      const jsonMessage = JSON.stringify(message);
+      this.logger.info("Sending Json Message", LogCategory.Websocket, jsonMessage);
+      this.socket.send(jsonMessage);
     } else {
       this.logger.error("Cannot send message, WebSocket is not connected", LogCategory.Websocket);
       return throwError(() => new Error("WebSocket not connected"));

@@ -16,17 +16,17 @@ export class RpcMessageService {
   rpcMessage$ = this.rpcMessageSubject.asObservable();
 
   constructor() {
-    this.websocketService.onMessage().subscribe(event => this.validateRpcMessage(event));
+    this.websocketService.onMessage().subscribe(event => this.validateRpcMessage(event.data));
   }
 
-  private validateRpcMessage(event: any) {
+  private validateRpcMessage(message: any) {
     try {
-      const parsedMessage: RpcResponse = RpcResponseSchema.parse(event);
-      this.logger.info("Received message", LogCategory.Websocket, { parsedMessage });
+      const parsedMessage: RpcResponse = RpcResponseSchema.parse(message);
+      this.logger.info("Received message", LogCategory.Websocket, {parsedMessage});
       this.rpcMessageSubject.next(parsedMessage);
     } catch (error) {
       // Silently ignore invalid messages
-      this.logger.error("Received message", LogCategory.Websocket, { error });
+      this.logger.error("Received message", LogCategory.Websocket, {error});
     }
   }
 }
